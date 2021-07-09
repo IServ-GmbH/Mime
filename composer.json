@@ -16,37 +16,27 @@
             "role": "lead"
         }
     ],
-    "version": "2.11.0",
+    "version": "103",
     "time": "2018-01-14",
-    "repositories": [
-        {
-            "type": "pear",
-            "url": "https://pear.horde.org"
-        }
-    ],
     "require": {
-        "php": "^5.3 || ^7",
-        "pear-pear.horde.org/Horde_Exception": "^2",
-        "pear-pear.horde.org/Horde_ListHeaders": "^1.2",
-        "pear-pear.horde.org/Horde_Mail": "^2.5",
-        "pear-pear.horde.org/Horde_Stream": "^1.3",
-        "pear-pear.horde.org/Horde_Stream_Filter": "^2",
-        "pear-pear.horde.org/Horde_Support": "^2.1",
-        "pear-pear.horde.org/Horde_Text_Flowed": "^2",
-        "pear-pear.horde.org/Horde_Translation": "^2.2",
-        "pear-pear.horde.org/Horde_Util": "^2"
+        "php": ">=7.3",
+        "horde/exception": "103",
+        "horde/listheaders": "103",
+        "horde/mail": "103",
+        "horde/stream": "103",
+        "horde/stream-filter": "103",
+        "horde/support": "103",
+        "horde/text-flowed": "103",
+        "horde/translation": "103",
+        "horde/util": "103"
     },
     "suggest": {
-        "pear-pear.horde.org/Horde_Nls": "^2",
-        "pear-pear.horde.org/Horde_Test": "^2.1",
-        "pear-pear.horde.org/Horde_Text_Filter": "^2",
         "pear-pear.php.net/Net_DNS2": "*",
         "pear-pecl.php.net/idn": "*",
-        "pear-pecl.php.net/intl": "*"
-    },
-    "replace": {
-        "pear-pear.horde.org/Horde_Mime": "2.*",
-        "pear-horde/Horde_Mime": "2.*"
+        "pear-pecl.php.net/intl": "*",
+        "horde/nls": "^2",
+        "horde/test": "^2.1",
+        "horde/text-filter": "^2"
     },
     "autoload": {
         "psr-0": {
