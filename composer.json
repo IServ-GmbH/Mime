@@ -16,19 +16,17 @@
             "role": "lead"
         }
     ],
-    "version": "103",
-    "time": "2018-01-14",
     "require": {
         "php": ">=7.3",
-        "horde/exception": "103",
-        "horde/listheaders": "103",
-        "horde/mail": "103",
-        "horde/stream": "103",
-        "horde/stream-filter": "103",
-        "horde/support": "103",
-        "horde/text-flowed": "103",
-        "horde/translation": "103",
-        "horde/util": "103"
+        "horde/exception": ">=106",
+        "horde/listheaders": ">=106",
+        "horde/mail": ">=106",
+        "horde/stream": ">=106",
+        "horde/stream-filter": ">=106",
+        "horde/support": ">=106",
+        "horde/text-flowed": ">=106",
+        "horde/translation": ">=106",
+        "horde/util": ">=106"
     },
     "suggest": {
         "pear-pear.php.net/Net_DNS2": "*",

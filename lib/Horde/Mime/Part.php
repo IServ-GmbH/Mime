@@ -2229,7 +2229,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return ($this[$offset] !== null);
     }
@@ -2261,7 +2261,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->_parts[] = $value;
@@ -2280,7 +2280,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if ($part = $this[$offset]) {
             if ($part->parent === $this) {
@@ -2303,7 +2303,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
      *
      * @return integer  Number of message parts.
      */
-    public function count()
+    public function count(): int
     {
         return count($this->_parts);
     }
@@ -2333,7 +2333,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function next()
+    public function next(): void
     {
         ++$this->_temp['iterate'];
     }
@@ -2341,7 +2341,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->_reindex();
         reset($this->_parts);
@@ -2351,7 +2351,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function valid()
+    public function valid(): bool
     {
         return ($this->key() !== null);
     }
@@ -2359,7 +2359,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function hasChildren()
+    public function hasChildren(): bool
     {
         return (($curr = $this->current()) && count($curr));
     }
@@ -2367,7 +2367,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function getChildren()
+    public function getChildren(): ?\RecursiveIterator
     {
         return $this->current();
     }

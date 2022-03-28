@@ -34,7 +34,7 @@ class Horde_Mime_Filter_Encoding extends php_user_filter
     /**
      * @see stream_filter_register()
      */
-    public function onCreate()
+    public function onCreate(): bool
     {
         $this->params->body = false;
 
@@ -44,7 +44,7 @@ class Horde_Mime_Filter_Encoding extends php_user_filter
     /**
      * @see stream_filter_register()
      */
-    public function filter($in, $out, &$consumed, $closing)
+    public function filter($in, $out, &$consumed, $closing): int
     {
         while ($bucket = stream_bucket_make_writeable($in)) {
             if ($this->params->body !== 'binary') {
