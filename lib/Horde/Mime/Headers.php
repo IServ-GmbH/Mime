@@ -381,6 +381,29 @@ implements ArrayAccess, IteratorAggregate, Serializable
 
     /* Serializable methods. */
 
+    public function __serialize(): array
+    {
+        return array(
+            // Serialized data ID.
+            self::VERSION,
+            $this->_headers->getArrayCopy(),
+            // TODO: BC
+            $this->_eol
+        );
+    }
+
+    public function __unserialize(array $data): void
+    {
+        if (!isset($data[0]) ||
+            ($data[0] !== self::VERSION)) {
+            throw new Horde_Mime_Exception('Cache version change');
+        }
+
+        $this->_headers = new Horde_Support_CaseInsensitiveArray($data[1]);
+        // TODO: BC
+        $this->_eol = $data[2];
+    }
+
     /**
      * Serialization.
      *
