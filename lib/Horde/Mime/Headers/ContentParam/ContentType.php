@@ -166,7 +166,7 @@ extends Horde_Mime_Headers_ContentParam
 
     /**
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return isset($this[$offset])
             ? parent::offsetGet($offset)

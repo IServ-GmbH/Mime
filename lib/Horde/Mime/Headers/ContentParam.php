@@ -375,7 +375,7 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /**
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->_params[$offset];
     }

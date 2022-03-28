@@ -469,7 +469,7 @@ implements ArrayAccess, IteratorAggregate, Serializable
      * @return Horde_Mime_Headers_Element  Element object, or null if not
      *                                     found.
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->_headers[trim($offset)];
     }

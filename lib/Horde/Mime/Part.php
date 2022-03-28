@@ -2236,7 +2236,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
 
     /**
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         $this->_reindex();
 
@@ -2313,7 +2313,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function current()
+    public function current(): mixed
     {
         return (($key = $this->key()) === null)
             ? null
@@ -2323,7 +2323,7 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     /**
      * @since 2.8.0
      */
-    public function key()
+    public function key(): mixed
     {
         return (isset($this->_temp['iterate']) && isset($this->_parts[$this->_temp['iterate']]))
             ? $this->_temp['iterate']
@@ -2373,6 +2373,51 @@ implements ArrayAccess, Countable, RecursiveIterator, Serializable
     }
 
     /* Serializable methods. */
+
+    public function __serialize(): array
+    {
+        $data = array(
+            // Serialized data ID.
+            self::VERSION,
+            $this->_bytes,
+            $this->_eol,
+            $this->_hdrCharset,
+            $this->_headers,
+            $this->_metadata,
+            $this->_mimeid,
+            $this->_parts,
+            $this->_status,
+            $this->_transferEncoding
+        );
+
+        if (!empty($this->_contents)) {
+            $data[] = $this->_readStream($this->_contents);
+        }
+
+        return $data;
+    }
+
+    public function __unserialize(array $data): void
+    {
+        if (!isset($data[0]) || $data[0] != self::VERSION) {
+            throw new Exception('Cache version change');
+        }
+
+        $key = 0;
+        $this->_bytes = $data[++$key];
+        $this->_eol = $data[++$key];
+        $this->_hdrCharset = $data[++$key];
+        $this->_headers = $data[++$key];
+        $this->_metadata = $data[++$key];
+        $this->_mimeid = $data[++$key];
+        $this->_parts = $data[++$key];
+        $this->_status = $data[++$key];
+        $this->_transferEncoding = $data[++$key];
+
+        if (isset($data[++$key])) {
+            $this->setContents($data[$key]);
+        }
+    }
 
     /**
      * Serialization.

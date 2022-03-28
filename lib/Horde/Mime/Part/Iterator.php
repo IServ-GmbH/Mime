@@ -71,7 +71,7 @@ implements Countable, Iterator
 
     /**
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->valid()
             ? $this->_state->current
@@ -80,7 +80,7 @@ implements Countable, Iterator
 
     /**
      */
-    public function key()
+    public function key(): mixed
     {
         return ($curr = $this->current())
             ? $curr->getMimeId()
