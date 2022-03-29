@@ -259,7 +259,7 @@ class Horde_Mime_Mdn
         $part_three->setContents($part_three_text);
         $msg[] = $part_three;
 
-        return $msg->send($to, $msg_headers, $mailer);
+        $msg->send($to, $msg_headers, $mailer);
     }
 
     /**
