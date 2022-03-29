@@ -396,6 +396,31 @@ implements ArrayAccess, Horde_Mime_Headers_Extension_Mime, Serializable
 
     /* Serializable methods */
 
+    public function __serialize(): array
+    {
+        $vars = array_filter(get_object_vars($this));
+        if (isset($vars['_params'])) {
+            $vars['_params'] = $vars['_params']->getArrayCopy();
+        }
+
+        return $vars;
+    }
+
+    public function __unserialize(array $data): void
+    {
+        foreach ($data as $key => $val) {
+            switch ($key) {
+                case '_params':
+                    $this->_params = new Horde_Support_CaseInsensitiveArray($val);
+                    break;
+
+                default:
+                    $this->$key = $val;
+                    break;
+            }
+        }
+    }
+
     /**
      */
     public function serialize()
