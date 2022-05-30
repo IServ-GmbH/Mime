@@ -142,7 +142,7 @@ implements IteratorAggregate
         }
 
         /* Ensure no null characters exist in header data. */
-        return str_replace("\0", '', $data);
+        return null !== $data ? str_replace("\0", '', $data) : null;
     }
 
     /**
