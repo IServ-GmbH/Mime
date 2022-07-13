@@ -93,7 +93,7 @@ implements Horde_Mime_Headers_Element_Address
         case 'from':
         case 'to':
             /* Catch malformed undisclosed-recipients entries. */
-            if ((count($addr_list) == 1) &&
+            if ((count($addr_list) == 1 && null !== $addr_list[0]->bare_address) &&
                 preg_match("/^\s*undisclosed-recipients:?\s*$/i", $addr_list[0]->bare_address)) {
                 $addr_list = new Horde_Mail_Rfc822_List(
                     'undisclosed-recipients:;'
